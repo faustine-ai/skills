@@ -1,23 +1,26 @@
 # Faustine skills
 
-Skills the developer's coding agent (Claude Code, Cursor, Codex, …) runs inside
-the developer's repository to install and keep Faustine in step with the app.
-Faustine runs no agent of its own here: the developer's agent reads the skill,
-writes into the developer's repo, with the developer watching — the model Vercel
-Shop uses (`docs/initiatives/nextjs_web_agents/research/03`).
+Skills for the coding agent you already use (Claude Code, Cursor, Codex, …) to
+install the [Faustine](https://faustine.ai) Web Agent in your application and
+keep it in step with your code. Your agent reads the skill and edits your repo
+with you watching; nothing runs on Faustine's side.
 
 ```bash
-npx skills add faustine-ai/skills            # every skill, every agent you use
-npx skills add faustine-ai/skills --skill install-faustine
+npx skills add faustine-ai/skills                          # all three, for every agent you use
+npx skills add faustine-ai/skills --skill install-faustine # just one
 ```
 
-| Skill | Does | Iteration |
-|---|---|---|
-| [`install-faustine`](skills/install-faustine/SKILL.md) | Mounts the Web Agent in a Next.js app or a SPA; identity from the server | I1 |
-| [`enable-faustine-adapter`](skills/enable-faustine-adapter/SKILL.md) | Generates the adapter for Server Actions / data layer (`npx faustine-next init`) | I2 |
-| [`sync-faustine-adapter`](skills/sync-faustine-adapter/SKILL.md) | Audit · plan · apply: brings the registry in step after new, renamed or removed actions (`npx faustine-next sync`), one change at a time | I3 |
+| Skill | What it does |
+|---|---|
+| [`install-faustine`](skills/install-faustine/SKILL.md) | Mounts the Web Agent in a Next.js app (App Router or Pages Router) or a client-rendered SPA, with the user's identity signed on your server. The portal's *Install the assistant* card gives the exact command line. |
+| [`enable-faustine-adapter`](skills/enable-faustine-adapter/SKILL.md) | Next.js apps whose data lives behind Server Actions or server-only functions: generates the adapter (`faustine/registry.ts` and the `/api/faustine` route handler) with `npx faustine-next init`, so the agent can call them. |
+| [`sync-faustine-adapter`](skills/sync-faustine-adapter/SKILL.md) | After actions are added, renamed or removed: audits what Faustine sees against what the registry binds and applies the change with `npx faustine-next sync`, one at a time. |
 
-Layout follows the `skills` CLI convention: one folder per skill under
-`skills/`, a `SKILL.md` with frontmatter (`name`, `description` with the
-trigger phrases, `argument-hint`) and the steps; `.claude/skills` is a symlink
-to `skills/` for repos that install without the CLI.
+Each skill is a folder under `skills/` with a `SKILL.md`: frontmatter
+(`name`, `description` with the phrases that trigger it, `argument-hint`) and
+the steps. Without the CLI, copy the folder you need into your agent's skills
+directory (for Claude Code, `.claude/skills/`).
+
+The adapter skills use [`@faustine-ai/next`](https://github.com/faustine-ai/next).
+
+MIT.

@@ -1,6 +1,6 @@
 ---
 name: install-faustine
-description: Install the Faustine Web Agent in this application — a Next.js app (App Router or Pages Router) or a client-rendered SPA (React, Vue, Angular, Svelte). Use when the user asks to add, install, mount or set up the Faustine agent, assistant or widget, or pastes a Faustine agent id (wa_…), a Faustine setup code (fns_…) or an embed snippet.
+description: Install the Faustine Web Agent in this application — a Next.js app (App Router or Pages Router) or a client-rendered SPA (React, Vue, Angular, Svelte). Use when the user asks to add, install, mount or set up the Faustine agent, assistant or widget, or pastes a Faustine Web Agent id (a UUID), a Faustine setup code (fns_…) or an embed snippet.
 argument-hint: "[agent id] [--setup <code>] [--env <name>] [--debug]"
 ---
 
@@ -14,9 +14,8 @@ it in the browser.
 
 ## Before editing
 
-1. **Find the agent id.** It looks like `wa_…` and is in the portal under the
-   Web Agent's *Install the assistant* card, which gives this whole command
-   line. If the user did not give one, ask for it — never invent one.
+1. **Find the agent id.** It is a UUID, shown in the portal under the Web
+   Agent's *Install the assistant* card, which gives this whole command line. If the user did not give one, ask for it — never invent one.
    `--setup <code>` (a `fns_…` setup code) means the app also gets the
    Faustine adapter: see step 5.
 2. **Classify the app** — read `package.json`, the top-level folders and the
