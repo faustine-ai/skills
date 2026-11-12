@@ -101,8 +101,10 @@ in the app, call `agent.identify({ jwt })` when the user is known and
 **Script tag** (SPA / static site) — in the document head:
 
 ```html
-<script src="https://webagent.faustine.ai/embed.js?id=<AGENT_ID>" async></script>
+<script src="https://webagent.faustine.ai/embed?wid=<AGENT_ID>" async></script>
 ```
+
+For `--env`, add `&env=<ENVIRONMENT>` to the URL; for `--debug`, add `&debug=1`.
 
 ### 3. Identity from the server (when the app has a session)
 
